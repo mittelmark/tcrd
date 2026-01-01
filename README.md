@@ -27,8 +27,8 @@ tcrd svgchords Am x02210 -outfile guitar-am.svg -width 150
 ```
 
 <div style="margin-left: 40px">
-![](guitar-c.svg) ![](guitar-dm.svg) ![](guitar-em.svg) ![](guitar-f.svg)
-![](guitar-g.svg) ![](guitar-am.svg)
+![](assets/guitar-c.svg) ![](assets/guitar-dm.svg) ![](assets/guitar-em.svg) ![](assets/guitar-f.svg)
+![](assets/guitar-g.svg) ![](assets/guitar-am.svg)
 </div>
 
 And here how we can create a chord sheet:
