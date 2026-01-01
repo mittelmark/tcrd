@@ -21,7 +21,7 @@ package require tcrd
 package require tsvg
 tcrd transpose A 1 ;# - Bb
 tcrd svgchord C 0003 -outfile uke-c.svg ;# Uke Chord
-puts [tcrd chords {[Dm]Are you going to [C]Scarborough [Dm]Fair?}]
+puts [tcrd chordsheet {[Dm]Are you going to [C]Scarborough [Dm]Fair?}]
 ```
 
 ## Example
@@ -42,7 +42,7 @@ tcrd svgchords Am x02210 -outfile guitar-am.svg -width 150
 And here how we can create a chord sheet:
 
 ```{.tcl}
-puts [tcrd chords {
+puts [tcrd chordsheet {
 [Dm]Are you going to [C]Scarborough [Dm]Fair? 
 [F]Parsley, [Dm]sage, rose [F]mary [G]and [Dm]thyme 
 Remember [F]me to one who [C]lives there 

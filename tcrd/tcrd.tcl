@@ -18,7 +18,7 @@
 #' package require tsvg
 #' package require tcrd
 #' tcrd transpose NOTE STEP
-#' tcrd chords SONGTEXT
+#' tcrd chordsheet SONGTEXT
 #' tcrd songtranspose SONGTEXT STEP
 #' tcrd svgchord NAME CHORDSTRING ARGS
 #' ```
@@ -34,10 +34,10 @@
 #' ## FUNCTIONS
 #'
 
-package provide tcrd 0.0.1
+package provide tcrd 0.0.2
 
 namespace eval tcrd {
-    namespace export transpose chords svgchords
+    namespace export transpose chordsheets svgchords
     namespace ensemble create
     #'
     #' __tcrd transpose__ _note step_
@@ -77,7 +77,7 @@ namespace eval tcrd {
         return [lindex $notes $idx]$tp
     }
     #'
-    #' __tcrd chords__ _song ?transpose-step?_
+    #' __tcrd chordsheet__ _song ?transpose-step?_
     #'
     #' > _Arguments:_
     #'
@@ -88,10 +88,10 @@ namespace eval tcrd {
     #'
     #' ```{.tcl}
     #' package require tcrd
-    #' puts [tcrd chords {text [C]text t[Dm]ext}]
-    #' puts [tcrd chords {text [C]text t[Dm]ext} 2]
+    #' puts [tcrd chordsheet {text [C]text t[Dm]ext}]
+    #' puts [tcrd chordsheet {text [C]text t[Dm]ext} 2]
     #' ```
-    proc chords {song {transpose 0}} {
+    proc chordsheet {song {transpose 0}} {
         set nsong  ""
         foreach line [split $song "\n"] {
             set chords ""
@@ -240,7 +240,7 @@ namespace eval tcrd {
     #' </div>
     #'
     proc svgchords {name cstring args} {
-        array set arg [list -circlecolor maroon -width 100]
+        array set arg [list -circlecolor maroon -width 100 -height 255]
         if {[llength $args] == 1} {
             set outfile [lindex $args 0]
         } elseif {[llength $args] > 1}  {
@@ -255,7 +255,7 @@ namespace eval tcrd {
         }
         tsvg set code ""
         tsvg set width $arg(-width)
-        tsvg set height 255
+        tsvg set height $arg(-height)
         set ystart 48
         tsvg text x [expr {($arg(-width)/2)}] y 20 style "font: bold 24px sans-serif;" text-anchor middle $name 
         tsvg line x1 5 y1 $ystart x2 [expr {$arg(-width)-5}] y2 $ystart stroke-width 5 stroke black
@@ -282,9 +282,6 @@ namespace eval tcrd {
                 } elseif {$x == 0 && [string range $cstring $y $y] == "0"} {
                     tsvg text x [expr {10+1+($y*$inc)}] y 42 style "font: 20px sans-serif;" text-anchor middle O
                 }
-
-                
-                
             }
         }
         if {$outfile ne ""} {
@@ -313,7 +310,7 @@ namespace eval tcrd {
 #' </div>
 #'
 #' ```{.tcl}
-#' puts [tcrd chords {
+#' puts [tcrd chordsheet {
 #' [Dm]Are you going to [C]Scarborough [Dm]Fair? 
 #' [F]Parsley, [Dm]sage, rose [F]mary [G]and [Dm]thyme 
 #' Remember [F]me to one who [C]lives there 
@@ -325,8 +322,9 @@ namespace eval tcrd {
 
 #' ## SEE ALSO
 #'
-#' - [mndoc](https://github.com/mittelmark/mndoc) - converting Markdown output of
-#' - [tmdoc](https://github.com/mittelmark/tmdoc) - literate programming with Tcl
+#' - [mndoc](https://github.com/mittelmark/mndoc) - converting Markdown output to HTML 
+#' - [tmdoc](https://github.com/mittelmark/tmdoc) - literate programming with Tcl which can use embedded chords and lyrics to produce music chord sheets for booklets
+#' - [tsvg](https://github.com/mittelmark/tsvg) - draw svg graphics using Tcl commands, required package for _tcrd_ package to produce these svg chord charts
 #'
 #' ## AUTHOR
 #'

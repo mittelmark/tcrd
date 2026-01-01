@@ -58,7 +58,7 @@ other string instruments.</p>
 <pre class='code'><code>package require tsvg
 package require tcrd
 tcrd transpose NOTE STEP
-tcrd chords SONGTEXT
+tcrd chordsheet SONGTEXT
 tcrd songtranspose SONGTEXT STEP
 tcrd svgchord NAME CHORDSTRING ARGS</code></pre>
 
@@ -92,7 +92,7 @@ puts [tcrd transpose G 4]</code></pre>
 Ab
 B</code></pre>
 
-<p><strong>tcrd chords</strong> <em>song ?transpose-step?</em></p>
+<p><strong>tcrd chordsheet</strong> <em>song ?transpose-step?</em></p>
 
 <blockquote>
 <p><em>Arguments:</em></p>
@@ -106,15 +106,12 @@ B</code></pre>
 </blockquote>
 
 <pre class='code'><code class='tclcode'>package require tcrd
-puts [tcrd chords {text [C]text t[Dm]ext}]
-puts [tcrd chords {text [C]text t[Dm]ext} 2]</code></pre>
+puts [tcrd chordsheet {text [C]text t[Dm]ext}]
+puts [tcrd chordsheet {text [C]text t[Dm]ext} 2]</code></pre>
 
-<pre class='code'><code class='tclout'>     C     Dm  
-text text text 
-
-     D     Em  
-text text text 
-</code></pre>
+<pre class='code'><code class='tclerr'>unknown or ambiguous subcommand &quot;chordsheet&quot;: must be svgchords, or transpose
+    while executing
+&quot;tcrd chordsheet {text [C]text t[Dm]ext}&quot;</code></pre>
 
 <p><strong>tcrd svgchords</strong> <em>name cstring ?args?</em></p>
 
@@ -162,30 +159,26 @@ tcrd svgchords Am x02210 -outfile guitar-am.svg -width 150</code></pre>
 <img src="data:image/svg+xml;base64, PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiIHN0YW5kYWxvbmU9InllcyI/PgogICAgPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgaGVpZ2h0PSIyNTUiIHdpZHRoPSIxNTAiPgoKPHRleHQgeD0iNzUiIHk9IjIwIiBzdHlsZT0iZm9udDogYm9sZCAyNHB4IHNhbnMtc2VyaWY7IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4KRwo8L3RleHQ+Cgo8bGluZSB4MT0iNSIgeTE9IjQ4IiB4Mj0iMTQ1IiB5Mj0iNDgiIHN0cm9rZS13aWR0aD0iNSIgc3Ryb2tlPSJibGFjayIgLz4KCjxsaW5lIHgxPSIxMCIgeTE9IjQ4IiB4Mj0iMTAiIHkyPSIyNDgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJibGFjayIgLz4KCjxsaW5lIHgxPSIzNiIgeTE9IjQ4IiB4Mj0iMzYiIHkyPSIyNDgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJibGFjayIgLz4KCjxsaW5lIHgxPSI2MiIgeTE9IjQ4IiB4Mj0iNjIiIHkyPSIyNDgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJibGFjayIgLz4KCjxsaW5lIHgxPSI4OCIgeTE9IjQ4IiB4Mj0iODgiIHkyPSIyNDgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJibGFjayIgLz4KCjxsaW5lIHgxPSIxMTQiIHkxPSI0OCIgeDI9IjExNCIgeTI9IjI0OCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2U9ImJsYWNrIiAvPgoKPGxpbmUgeDE9IjE0MCIgeTE9IjQ4IiB4Mj0iMTQwIiB5Mj0iMjQ4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZT0iYmxhY2siIC8+Cgo8bGluZSB4MT0iMTAiIHkxPSI4OCIgeDI9IjE0MCIgeTI9Ijg4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZT0iYmxhY2siIC8+Cgo8dGV4dCB4PSI2MyIgeT0iNDIiIHN0eWxlPSJmb250OiAyMHB4IHNhbnMtc2VyaWY7IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4KTwo8L3RleHQ+Cgo8dGV4dCB4PSI4OSIgeT0iNDIiIHN0eWxlPSJmb250OiAyMHB4IHNhbnMtc2VyaWY7IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4KTwo8L3RleHQ+Cgo8dGV4dCB4PSIxMTUiIHk9IjQyIiBzdHlsZT0iZm9udDogMjBweCBzYW5zLXNlcmlmOyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Ck8KPC90ZXh0PgoKPGxpbmUgeDE9IjEwIiB5MT0iMTI4IiB4Mj0iMTQwIiB5Mj0iMTI4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZT0iYmxhY2siIC8+Cgo8bGluZSB4MT0iMTAiIHkxPSIxNjgiIHgyPSIxNDAiIHkyPSIxNjgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJibGFjayIgLz4KCjxjaXJjbGUgY3g9IjM3IiBjeT0iMTA4IiByPSI5IiBzdHJva2U9Im1hcm9vbiIgZmlsbD0ibWFyb29uIiAvPgoKPGxpbmUgeDE9IjEwIiB5MT0iMjA4IiB4Mj0iMTQwIiB5Mj0iMjA4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZT0iYmxhY2siIC8+Cgo8Y2lyY2xlIGN4PSIxMSIgY3k9IjE0OCIgcj0iOSIgc3Ryb2tlPSJtYXJvb24iIGZpbGw9Im1hcm9vbiIgLz4KCjxjaXJjbGUgY3g9IjE0MSIgY3k9IjE0OCIgcj0iOSIgc3Ryb2tlPSJtYXJvb24iIGZpbGw9Im1hcm9vbiIgLz4KCjxsaW5lIHgxPSIxMCIgeTE9IjI0OCIgeDI9IjE0MCIgeTI9IjI0OCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2U9ImJsYWNrIiAvPgoKPC9zdmc+Cg=="></img> <img src="data:image/svg+xml;base64, PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiIHN0YW5kYWxvbmU9InllcyI/PgogICAgPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgaGVpZ2h0PSIyNTUiIHdpZHRoPSIxNTAiPgoKPHRleHQgeD0iNzUiIHk9IjIwIiBzdHlsZT0iZm9udDogYm9sZCAyNHB4IHNhbnMtc2VyaWY7IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4KQW0KPC90ZXh0PgoKPGxpbmUgeDE9IjUiIHkxPSI0OCIgeDI9IjE0NSIgeTI9IjQ4IiBzdHJva2Utd2lkdGg9IjUiIHN0cm9rZT0iYmxhY2siIC8+Cgo8bGluZSB4MT0iMTAiIHkxPSI0OCIgeDI9IjEwIiB5Mj0iMjQ4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZT0iYmxhY2siIC8+Cgo8bGluZSB4MT0iMzYiIHkxPSI0OCIgeDI9IjM2IiB5Mj0iMjQ4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZT0iYmxhY2siIC8+Cgo8bGluZSB4MT0iNjIiIHkxPSI0OCIgeDI9IjYyIiB5Mj0iMjQ4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZT0iYmxhY2siIC8+Cgo8bGluZSB4MT0iODgiIHkxPSI0OCIgeDI9Ijg4IiB5Mj0iMjQ4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZT0iYmxhY2siIC8+Cgo8bGluZSB4MT0iMTE0IiB5MT0iNDgiIHgyPSIxMTQiIHkyPSIyNDgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJibGFjayIgLz4KCjxsaW5lIHgxPSIxNDAiIHkxPSI0OCIgeDI9IjE0MCIgeTI9IjI0OCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2U9ImJsYWNrIiAvPgoKPGxpbmUgeDE9IjEwIiB5MT0iODgiIHgyPSIxNDAiIHkyPSI4OCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2U9ImJsYWNrIiAvPgoKPHRleHQgeD0iMTEiIHk9IjQyIiBzdHlsZT0iZm9udDogMjBweCBzYW5zLXNlcmlmOyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ClgKPC90ZXh0PgoKPHRleHQgeD0iMzciIHk9IjQyIiBzdHlsZT0iZm9udDogMjBweCBzYW5zLXNlcmlmOyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Ck8KPC90ZXh0PgoKPHRleHQgeD0iMTQxIiB5PSI0MiIgc3R5bGU9ImZvbnQ6IDIwcHggc2Fucy1zZXJpZjsiIHRleHQtYW5jaG9yPSJtaWRkbGUiPgpPCjwvdGV4dD4KCjxsaW5lIHgxPSIxMCIgeTE9IjEyOCIgeDI9IjE0MCIgeTI9IjEyOCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2U9ImJsYWNrIiAvPgoKPGNpcmNsZSBjeD0iMTE1IiBjeT0iNjgiIHI9IjkiIHN0cm9rZT0ibWFyb29uIiBmaWxsPSJtYXJvb24iIC8+Cgo8bGluZSB4MT0iMTAiIHkxPSIxNjgiIHgyPSIxNDAiIHkyPSIxNjgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJibGFjayIgLz4KCjxjaXJjbGUgY3g9IjYzIiBjeT0iMTA4IiByPSI5IiBzdHJva2U9Im1hcm9vbiIgZmlsbD0ibWFyb29uIiAvPgoKPGNpcmNsZSBjeD0iODkiIGN5PSIxMDgiIHI9IjkiIHN0cm9rZT0ibWFyb29uIiBmaWxsPSJtYXJvb24iIC8+Cgo8bGluZSB4MT0iMTAiIHkxPSIyMDgiIHgyPSIxNDAiIHkyPSIyMDgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlPSJibGFjayIgLz4KCjxsaW5lIHgxPSIxMCIgeTE9IjI0OCIgeDI9IjE0MCIgeTI9IjI0OCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2U9ImJsYWNrIiAvPgoKPC9zdmc+Cg=="></img>
 </div>
 
-<pre class='code'><code class='tclcode'>puts [tcrd chords {
+<pre class='code'><code class='tclcode'>puts [tcrd chordsheet {
 [Dm]Are you going to [C]Scarborough [Dm]Fair? 
 [F]Parsley, [Dm]sage, rose [F]mary [G]and [Dm]thyme 
 Remember [F]me to one who [C]lives there 
 [Dm]He once [C]was a true love of [Dm]mine
 }]</code></pre>
 
-<pre class='code'><code class='tclout'>
-Dm               C           Dm     
-Are you going to Scarborough Fair?  
-F        Dm         F    G   Dm     
-Parsley, sage, rose mary and thyme  
-         F             C            
-Remember me to one who lives there  
-Dm      C                  Dm   
-He once was a true love of mine 
-
-</code></pre>
+<pre class='code'><code class='tclerr'>unknown or ambiguous subcommand &quot;chordsheet&quot;: must be svgchords, or transpose
+    while executing
+&quot;tcrd chordsheet {
+[Dm]Are you going to [C]Scarborough [Dm]Fair? 
+[F]Parsley, [Dm]sage, rose [F]mary [G]and [Dm]thyme 
+Remember [F]me to one who [C]liv...&quot;</code></pre>
 
 <p><a name="seealso"> </a></p><h2>SEE ALSO</h2>
 
 <ul>
-<li><a href="https://github.com/mittelmark/mndoc">mndoc</a> - converting Markdown output of</li>
-<li><a href="https://github.com/mittelmark/tmdoc">tmdoc</a> - literate programming with Tcl
+<li><a href="https://github.com/mittelmark/mndoc">mndoc</a> - converting Markdown output to HTML </li>
+<li><a href="https://github.com/mittelmark/tmdoc">tmdoc</a> - literate programming with Tcl which can use embedded chords and lyrics to produce music chord sheets for booklets</li>
+<li><a href="https://github.com/mittelmark/tsvg">tsvg</a> - draw svg graphics using Tcl commands, required package for <em>tcrd</em> package to produce these svg chord charts
 </li></ul>
 
 <p><a name="author"> </a></p><h2>AUTHOR</h2>
