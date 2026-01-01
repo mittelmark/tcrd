@@ -19,6 +19,8 @@ ARGS=
 tasks:  ## list all tasks
 	@grep -Eo '^[a-z0-9]+:.+' $(CURRENT_MAKEFILE) | sed -E 's/:\s+##/\t- /g'
 
-docu:
+docu:   ## create documentation
 	mndoc tcrd.tcl tcrd.tmd
 	TCLLIBPATH=../ tmdoc tcrd.tmd - --toc true | mndoc - tcrd.html --css tmdoc.css
+test:   ## run tests
+	tclsh tcrd.test
