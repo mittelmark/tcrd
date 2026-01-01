@@ -37,10 +37,13 @@
 package provide tcrd 0.0.2
 
 namespace eval tcrd {
-    namespace export transpose chordsheet svgchords
+    namespace export transpose chordsheet svgchords \
+          songtranspose
     namespace ensemble create
     #'
-    #' __tcrd transpose__ _note step_
+    #' __tcrd transpose__ _note half-step_
+    #' 
+    #' > Low level function to transpose a note by a certain number of half steps
     #'
     #' > _Arguments:_
     #'
@@ -78,6 +81,8 @@ namespace eval tcrd {
     }
     #'
     #' __tcrd chordsheet__ _song ?transpose-step?_
+    #'
+    #' > Create chord sheets for lyrics with embedded chords.
     #'
     #' > _Arguments:_
     #'
@@ -166,8 +171,25 @@ namespace eval tcrd {
                 append nsong "$chords\n"
             }
         }
-        return $nsong
+        return [string trimright $nsong]
     }
+    #'
+    #' __tcrd songtranspose__ _song transpose-step?_
+    #' 
+    #' > Transpose the chords of chord sheet where chords are above the lyrics.
+    #'
+    #' > _Arguments:_
+    #'
+    #' > - _song_ - song lyrics with chords above the lyrics
+    #'   - _transpose-step_ - halfstep used for transposing
+    #' 
+    #' > Example:
+    #'
+    #' ```{.tcl}
+    #' package require tcrd
+    #' puts [tcrd songtranspose {    C     Em
+    #' text text text} 2]
+    #' ```
     proc songtranspose {song transpose} {
         set nsong  ""
         foreach line [split $song "\n"] {
@@ -210,10 +232,13 @@ namespace eval tcrd {
                 append nsong "$nline\n"
             }
         }
-        return $nsong
+        return [string trimright $nsong]
     }
     #'
     #' __tcrd svgchords__ _name cstring ?args?_
+    #'
+    #' > Create a svg graphics for Guitar and Ukulele chord 
+    #'   diagrams.
     #'
     #' > _Arguments:_
     #'

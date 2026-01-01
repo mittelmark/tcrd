@@ -8,10 +8,8 @@ tcltest::test tcrd-1.1 {testing loading} {
 } {0.0.2}
 
 tcltest::test tcrd-1.2 {testing chordsheet} {
-    tcrd chordsheet {test [Am]test}
-} {     Am   
-test test 
-}
+    tcrd transpose Bb 1
+} {B}
 
 tcltest::test tcrd-1.3 {testing transpose} {
     tcrd transpose C 1
@@ -32,6 +30,23 @@ tcltest::test tcrd-1.6 {testing transpose} {
 tcltest::test tcrd-1.7 {testing svgchords} {
     string length [tcrd svgchords Am 2000]
 } {1158}
+
+tcltest::test tcrd-1.8 {testing chordsheet} {
+    tcrd chordsheet {test [Am]test}
+} {     Am   
+test test}
+
+tcltest::test tcrd-1.9 {testing chordsheet with transpose} {
+    tcrd chordsheet {test [Am]test} 2
+} {     Bm   
+test test}
+
+tcltest::test tcrd-1.10 {testing chordsheet with transpose} {
+    tcrd songtranspose {     Bm   
+test test 
+} 2
+} {     Dbm   
+test test}
 
 ::tcltest::cleanupTests 0
 

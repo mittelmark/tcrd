@@ -70,9 +70,11 @@ Guitar or Ukulele giving fingering positions.</p>
 
 <p><a name="functions"> </a></p><h2>FUNCTIONS</h2>
 
-<p><strong>tcrd transpose</strong> <em>note step</em></p>
+<p><strong>tcrd transpose</strong> <em>note half-step</em></p>
 
 <blockquote>
+<p>Low level function to transpose a note by a certain number of half steps</p>
+
 <p><em>Arguments:</em></p>
 
 <ul>
@@ -95,6 +97,8 @@ B</code></pre>
 <p><strong>tcrd chordsheet</strong> <em>song ?transpose-step?</em></p>
 
 <blockquote>
+<p>Create chord sheets for lyrics with embedded chords.</p>
+
 <p><em>Arguments:</em></p>
 
 <ul>
@@ -109,13 +113,39 @@ B</code></pre>
 puts [tcrd chordsheet {text [C]text t[Dm]ext}]
 puts [tcrd chordsheet {text [C]text t[Dm]ext} 2]</code></pre>
 
-<pre class='code'><code class='tclerr'>unknown or ambiguous subcommand &quot;chordsheet&quot;: must be svgchords, or transpose
-    while executing
-&quot;tcrd chordsheet {text [C]text t[Dm]ext}&quot;</code></pre>
+<pre class='code'><code class='tclout'>     C     Dm  
+text text text
+     D     Em  
+text text text</code></pre>
+
+<p><strong>tcrd songtranspose</strong> <em>song transpose-step?</em></p>
+
+<blockquote>
+<p>Transpose the chords of chord sheet where chords are above the lyrics.</p>
+
+<p><em>Arguments:</em></p>
+
+<ul>
+<li><em>song</em> - song lyrics with chords above the lyrics</li>
+<li><em>transpose-step</em> - halfstep used for transposing
+</li></ul>
+
+<p>Example:</p>
+</blockquote>
+
+<pre class='code'><code class='tclcode'>package require tcrd
+puts [tcrd songtranspose {    C     Em
+text text text} 2]</code></pre>
+
+<pre class='code'><code class='tclout'>    D     Gbm 
+text text text</code></pre>
 
 <p><strong>tcrd svgchords</strong> <em>name cstring ?args?</em></p>
 
 <blockquote>
+<p>Create a svg graphics for Guitar and Ukulele chord 
+  diagrams.</p>
+
 <p><em>Arguments:</em></p>
 
 <ul>
@@ -166,12 +196,15 @@ Remember [F]me to one who [C]lives there
 [Dm]He once [C]was a true love of [Dm]mine
 }]</code></pre>
 
-<pre class='code'><code class='tclerr'>unknown or ambiguous subcommand &quot;chordsheet&quot;: must be svgchords, or transpose
-    while executing
-&quot;tcrd chordsheet {
-[Dm]Are you going to [C]Scarborough [Dm]Fair? 
-[F]Parsley, [Dm]sage, rose [F]mary [G]and [Dm]thyme 
-Remember [F]me to one who [C]liv...&quot;</code></pre>
+<pre class='code'><code class='tclout'>
+Dm               C           Dm     
+Are you going to Scarborough Fair?  
+F        Dm         F    G   Dm     
+Parsley, sage, rose mary and thyme  
+         F             C            
+Remember me to one who lives there  
+Dm      C                  Dm   
+He once was a true love of mine</code></pre>
 
 <p><a name="seealso"> </a></p><h2>SEE ALSO</h2>
 
