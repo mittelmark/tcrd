@@ -37,7 +37,7 @@
 package provide tcrd 0.0.2
 
 namespace eval tcrd {
-    namespace export transpose chordsheets svgchords
+    namespace export transpose chordsheet svgchords
     namespace ensemble create
     #'
     #' __tcrd transpose__ _note step_

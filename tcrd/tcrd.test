@@ -1,0 +1,37 @@
+#!/usr/bin/env tclsh
+package require tcltest
+tcltest::test tcrd-1.1 {testing loading} {
+    lappend auto_path ..
+    package require tsvg
+    package require tcrd
+    
+} {0.0.2}
+
+tcltest::test tcrd-1.2 {testing chordsheet} {
+    tcrd chordsheet {test [Am]test}
+} {     Am   
+test test 
+}
+
+tcltest::test tcrd-1.3 {testing transpose} {
+    tcrd transpose C 1
+} {Db}
+
+tcltest::test tcrd-1.4 {testing transpose} {
+    tcrd transpose C 2
+} {D}
+
+tcltest::test tcrd-1.5 {testing transpose} {
+    tcrd transpose C 4
+} {E}
+
+tcltest::test tcrd-1.6 {testing transpose} {
+    tcrd transpose C 12
+} {C}
+
+tcltest::test tcrd-1.7 {testing svgchords} {
+    string length [tcrd svgchords Am 2000]
+} {1158}
+
+::tcltest::cleanupTests 0
+
