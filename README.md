@@ -12,7 +12,7 @@ Writing chord sheets from lyrics and chord diagrams using Tcl.
 
 The package  _tcrd_ allow  you to write chord  sheets from lyrics with  embedded
 chords and create svg graphics from short text descriptions like _0003_ for an
-Ukulele C chord diagram or _xx0231_ for a Guitat Dm chord.
+Ukulele C chord diagram or _xx0231_ for a Guitar Dm chord.
 
 ## Synopsis
 
