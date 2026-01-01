@@ -14,6 +14,16 @@ The package  _tcrd_ allow  you to write chord  sheets from lyrics with  embedded
 chords and create svg graphics from short text descriptions like _0003_ for an
 Ukulele C chord diagram or _xx0231_ for a Guitat Dm chord.
 
+## Synopsis
+
+```
+package require tcrd
+package require tsvg
+tcrd transpose A 1 ;# - Bb
+tcrd svgchord C 0003 -outfile uke-c.svg ;# Uke Chord
+puts [tcrd chords {[Dm]Are you going to [C]Scarborough [Dm]Fair?}]
+```
+
 ## Example
 
 ```{.tcl}
@@ -53,18 +63,21 @@ Dm      C                  Dm
 He once was a true love of mine 
 ```
 
+## Changes
+
+- __2026-01-01 - v0.0.1__ - initial release as Tcl package
+
 ## SEE ALSO
 
+- [tsvg](https://github.com/mittelmark/tsvg) - writing svg files with Tcl
 - [mndoc](https://github.com/mittelmark/mndoc) - converting Markdown output of
 - [tmdoc](https://github.com/mittelmark/tmdoc) - literate programming with Tcl
 
 ## AUTHOR
 
-@ 2025 - Detlef  Groth,  University  of  Potsdam,  Germany  -
-  dgroth(at)uni(minus)potsdam(dot)de
+@ 2025 - Detlef  Groth,  University  of  Potsdam,  Germany  - dgroth(at)uni(minus)potsdam(dot)de
 
 ## LICENSE
-
 
 ```
 BSD 3-Clause License

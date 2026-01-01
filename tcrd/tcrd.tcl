@@ -49,7 +49,7 @@ namespace eval tcrd {
     #' 
     #' > Example:
     #'
-    #' ```{.tcl echo=FALSE}
+    #' ```{.tcl}
     #' package require tcrd
     #' puts [tcrd transpose C 2]
     #' puts [tcrd transpose C 8]
