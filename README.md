@@ -4,7 +4,7 @@
 [![Release](https://img.shields.io/github/v/release/mittelmark/tcrd.svg?label=current+release)](https://github.com/mittelmark/tcrd/releases)
 ![Downloads](https://img.shields.io/github/downloads/mittelmark/tcrd/total)
 ![Commits](https://img.shields.io/github/commits-since/mittelmark/tcrd/latest)
-[![Docu Package](https://img.shields.io/badge/Docu-Package-blue)](http://htmlpreview.github.io/?https://github.com/mittelmark/tcrd/blob/master/tcrd/tcrd/tcrd.html)
+[![Docu Package](https://img.shields.io/badge/Docu-Package-blue)](http://htmlpreview.github.io/?https://github.com/mittelmark/tcrd/blob/master/tcrd/tcrd.html)
 
 Writing chord sheets from lyrics and chord diagrams using Tcl.
 
