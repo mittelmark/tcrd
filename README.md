@@ -71,7 +71,9 @@ He once was a true love of mine
 
 - [tsvg](https://github.com/mittelmark/tsvg) - writing svg files with Tcl
 - [mndoc](https://github.com/mittelmark/mndoc) - converting Markdown output of
+  tmdoc to HTML
 - [tmdoc](https://github.com/mittelmark/tmdoc) - literate programming with Tcl
+  using the _tcrd_ package to display music chord sheets and chord diagrams
 
 ## AUTHOR
 
